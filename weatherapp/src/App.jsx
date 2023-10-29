@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import InputComponent from "./InputComponent";
-
+import config from './config.json';
 function App() {
   const initialWeatherData = {
     time: "",
@@ -11,15 +11,13 @@ function App() {
     country: "",
     data: null,
     weatherIcon: "",
-    cityInfo: "",
     temperature: "",
     temperatureFeelslike: "",
     humidity: "",
   };
   
   const baseUrl = "http://api.weatherstack.com/current";
-  const apiKey = "6a48543dab405dac14e0fb31ec90fcbe";
-  
+  const apiKey = config.apiKey;
   const [weatherData, setWeatherData] = useState(initialWeatherData);
   
   useEffect(() => {
@@ -31,7 +29,7 @@ function App() {
         const location = json.location;
         const newWeatherData = {
           time: dataMeteo.observation_time,
-          cityInfo: location.name,
+          city: location.name,
           humidity: dataMeteo.humidity,
           temperature: dataMeteo.temperature,
           temperatureFeelslike: dataMeteo.feelslike,
@@ -55,7 +53,7 @@ function App() {
         <div className="row align-items-center mt-4">
           <div className="col-12">
             <h2>
-              {weatherData.cityInfo}, {weatherData.country}
+              {weatherData.city}, {weatherData.country}
             </h2>
           </div>
           <div>
