@@ -3,8 +3,12 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import InputComponent from "./InputComponent";
-import config from './config.json';
+import InfoMeteoComponent from "./InfoMeteoComponent";
+import config from "./config.json";
+
+
 function App() {
+  
   const initialWeatherData = {
     time: "",
     city: "",
@@ -14,60 +18,29 @@ function App() {
     temperature: "",
     temperatureFeelslike: "",
     humidity: "",
+    weatherDescription: "",
   };
-  
-  const baseUrl = "http://api.weatherstack.com/current";
-  const apiKey = config.apiKey;
   const [weatherData, setWeatherData] = useState(initialWeatherData);
-  
-  useEffect(() => {
-    fetch(`${baseUrl}?access_key=${apiKey}&query=Reggio-calabria`)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        const dataMeteo = json.current;
-        const location = json.location;
-        const newWeatherData = {
-          time: dataMeteo.observation_time,
-          city: location.name,
-          humidity: dataMeteo.humidity,
-          temperature: dataMeteo.temperature,
-          temperatureFeelslike: dataMeteo.feelslike,
-          country: location.country,
-        };
-        if (dataMeteo.weather_descriptions[0] === "Sunny") {
-          newWeatherData.weatherIcon = "src/assets/img/sun_weather_icon.png";
-        }
-        setWeatherData(newWeatherData);
-      })
-      .catch((error) => console.error(error));
-  }, []);
 
-  return (
-    <>
-      <div className="container">
-       {/*  <InputComponent setCity={setCity} /> */}
-        <div className="row justify-content-center mt-5">
-          <h1>{weatherData.time}</h1>
+
+  if (weatherData.city != "") {
+    return (
+      <>
+        <div className="container">
+          <InputComponent  setWeatherData={setWeatherData}/>
+          <InfoMeteoComponent weatherData={weatherData}/>
         </div>
-        <div className="row align-items-center mt-4">
-          <div className="col-12">
-            <h2>
-              {weatherData.city}, {weatherData.country}
-            </h2>
-          </div>
-          <div>
-            <img className="w-100" src={weatherData.weatherIcon} alt="" />
-          </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="container">
+          <InputComponent setWeatherData={setWeatherData} />
         </div>
-        <p>
-          <span className="temperaturaAttuale">{weatherData.temperature}°</span> / temperatura percepita:{" "}
-          {weatherData.temperatureFeelslike}°
-        </p>
-        <p>Umidità: {weatherData.humidity}%</p>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default App;
