@@ -22,10 +22,16 @@ function InputComponent({ setWeatherData }) {
           const newWeatherData = {
             time: dataMeteo.observation_time,
             city: location.name,
-            humidity: dataMeteo.humidity,
             temperature: dataMeteo.temperature,
             temperatureFeelslike: dataMeteo.feelslike,
             country: location.country,
+            humidity: dataMeteo.humidity,
+            precip: dataMeteo.precip,
+            uvIndex: dataMeteo.uv_index,
+            visibility: dataMeteo.visibility,
+            windDegree: dataMeteo.wind_degree,
+            windDir: dataMeteo.wind_dir,
+            windSpeed: dataMeteo.wind_speed,
           };
           if (dataMeteo.weather_descriptions[0] === "Sunny") {
             newWeatherData.weatherIcon = "src/assets/img/sun_weather_icon.png";
@@ -34,7 +40,25 @@ function InputComponent({ setWeatherData }) {
             newWeatherData.weatherIcon =
               "src/assets/img/sunny_weather_icon.png";
             newWeatherData.weatherDescription = "Nuvoloso";
+          }else if (dataMeteo.weather_descriptions[0] === "Mist") {
+            newWeatherData.weatherIcon =
+              "src/assets/img/foggy_cloud_weather_icon.png";
+            newWeatherData.weatherDescription = "Nebbia";
+          }else if (dataMeteo.weather_descriptions[0] === "Clear") {
+            newWeatherData.weatherIcon =
+              "src/assets/img/moon_weather_icon.png";
+            newWeatherData.weatherDescription = "Sereno";
+          }else if (dataMeteo.weather_descriptions[0] === "Partly cloudy") {
+            newWeatherData.weatherIcon =
+              "src/assets/img/moon_cloud_weather_icon.png";
+            newWeatherData.weatherDescription = "Parzialmente nuvoloso";
+          }else if (dataMeteo.weather_descriptions[0] === "Light Rain") {
+            newWeatherData.weatherIcon =
+              "src/assets/img/rain_weather_icon.png";
+            newWeatherData.weatherDescription = "Pioggia";
           }
+          
+          
           setWeatherData(newWeatherData);
         })
         .catch((error) => console.error(error));
