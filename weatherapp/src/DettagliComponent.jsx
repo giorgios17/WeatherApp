@@ -1,31 +1,33 @@
+/* eslint-disable react/prop-types */
 import React from "react";
+import CardComponent from "./CardComponent";
 
 function DettagliComponent({ weatherData, setMostraDettagli }) {
   return (
     <>
-      <div className="container-dettagli">
-        <h1>Dettagli:</h1>
-        <div className="card" style={{width: "50%"}}>
-          <img className="card-img-top" src="src/assets/img/wind.png" alt="Card image cap" />
-          <div className="card-body">
-            <p className="card-text">
-            <span className="fw-bolder">Umidità:</span><br/> {weatherData.humidity}%
-            </p>
-          </div>
+      <div className="container-dettagli py-5">
+        <div className="row justify-content-center py-3">
+          <CardComponent
+            image={"src/assets/img/humidity_icon.png"}
+            descrizione={"Umidità:"}
+            valore={`${weatherData.humidity}%`}
+          />
+          <CardComponent
+            image={"src/assets/img/rain_weather_icon.png"}
+            descrizione={"Precipitazioni:"}
+            valore={`${weatherData.precip}%`}
+          />
+          <CardComponent
+            image={"src/assets/img/sun_weather_icon.png"}
+            descrizione={"Indice UV:"}
+            valore={weatherData.uvIndex}
+          />
+          <CardComponent
+            image={"src/assets/img/wind.png"}
+            descrizione={"Vento:"}
+            valore={`${weatherData.windDegree}°/${weatherData.windDir} - ${weatherData.windSpeed}km/h`}
+          />
         </div>
-        <div className="card" style={{width: "50%"}}>
-          <img className="card-img-top" src="src/assets/img/rain_weather_icon.png" alt="Card image cap" />
-          <div className="card-body">
-            <p className="card-text">
-            <span className="fw-bolder">Precipitazioni:</span><br/> {weatherData.precip}%
-            </p>
-          </div>
-        </div>
-        <p>Indice UV: {weatherData.uvIndex}</p>
-        <p>
-          Direzione vento: {weatherData.windDegree}°/{weatherData.windDir}
-        </p>
-        <p>Vento: {weatherData.windSpeed}km/h</p>
         <button
           type="button"
           className="btn btn-danger fw-bolder buttonCloseDettagli"

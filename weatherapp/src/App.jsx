@@ -42,7 +42,7 @@ function App() {
           <button type="button" className="btn btn-warning fw-bolder" onClick={()=>setMostraDettagli(true)}>
             Mostra dettagli
           </button>
-          {mostraDettagli && <DettagliComponent weatherData={weatherData} setMostraDettagli={setMostraDettagli}/>}
+          {mostraDettagli && <DettagliComponent weatherData={weatherData} setMostraDettagli={setMostraDettagli} mostraDettagli={mostraDettagli}/>}
         </div>
       </>
     );

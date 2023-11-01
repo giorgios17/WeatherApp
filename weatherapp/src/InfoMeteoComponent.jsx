@@ -14,7 +14,7 @@ function InfoMeteoComponent({weatherData}) {
               </h2>
             </div>
             <div>
-              <img className="w-100" src={weatherData.weatherIcon} alt="" />
+              <img className="weatherIcon" src={weatherData.weatherIcon} alt="" />
             </div>
             <p className="fw-bold">
               {weatherData.weatherDescription}

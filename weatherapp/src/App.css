@@ -41,14 +41,15 @@
   color: #888;
 }
 .container{
-  background-color: rgb(72 203 255);
+  background: url("src/assets/img/bg-sun.jpeg");
+  background-size: cover;
   height: 100vh;
   width: 100vw;
   padding: 10px;
   overflow: hidden;
 }
 .container-dettagli{
-  background-color: rgb(72 203 255);
+  background: url("src/assets/img/bg-sun.jpeg");
   height: 100vh;
   width: 100vw;
   padding: 10px;
@@ -66,6 +67,14 @@
   top: 10px;
   right: 10px;
 }
+.weatherIcon{
+  width: 215px;
+}
 .card{
   padding: 1em !important;
+  margin: 10px;
+  border: 0;
+}
+.card .card-body{
+  padding:0;
 }
