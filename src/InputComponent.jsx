@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import config from "./config.json";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 function InputComponent({ setWeatherData }) {
   const [city, setCity] = useState("");
@@ -12,6 +14,40 @@ function InputComponent({ setWeatherData }) {
 
   const baseUrl = "https://api.weatherapi.com/v1/current.json";
   const apiKey = config.apiKey;
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      /* x.innerHTML = "Geolocation is not supported by this browser."; */
+    }
+  }
+  function showPosition(position) {
+    console.log(position);
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+  
+    // Costruisci l'URL per la richiesta di geocodifica inversa a Google Maps
+    const geocodeUrl = `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}`;
+  
+    // Esegui la richiesta HTTP per ottenere i dati di geocodifica inversa
+    fetch(geocodeUrl)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if (data.address.town) {
+          // La città si trova generalmente nell'indirizzo formattato
+          const town = data.address.town;
+          setCity(town);
+        } else {
+          console.log("Nessun risultato trovato per le coordinate.");
+        }
+      })
+      .catch(error => {
+        console.error("Errore nella richiesta di geocodifica inversa:", error);
+      });
+  }
+
 
   const handleCitySubmit = () => {
     const formattedCity = city.toLowerCase().replace(/\s+/g, "-");
@@ -74,6 +110,7 @@ function InputComponent({ setWeatherData }) {
 
   return (
     <div>
+      <div className="d-flex">
       <input
         type="text"
         className="form-control"
@@ -81,6 +118,10 @@ function InputComponent({ setWeatherData }) {
         value={city}
         onChange={handleInputChange}
       />
+      <button type="button" className="btn btn-primary" onClick={()=>getLocation()}>
+      <FontAwesomeIcon icon={faLocationDot} />
+      </button>
+      </div>
       {error && (
         <div
           className="alert alert-danger"
