@@ -15,7 +15,7 @@ function DettagliComponent({ weatherData, setMostraDettagli }) {
           <CardComponent
             image={"src/assets/img/rain_weather_icon.png"}
             descrizione={"Precipitazioni:"}
-            valore={`${weatherData.precip}%`}
+            valore={`${weatherData.precip} mm`}
           />
           <CardComponent
             image={"src/assets/img/sun_weather_icon.png"}

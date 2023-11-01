@@ -10,12 +10,12 @@ function InputComponent({ setWeatherData }) {
     setCity(e.target.value);
   };
 
-  const baseUrl = "http://api.weatherstack.com/current";
+  const baseUrl = "https://api.weatherapi.com/v1/current.json";
   const apiKey = config.apiKey;
 
   const handleCitySubmit = () => {
     const formattedCity = city.toLowerCase().replace(/\s+/g, "-");
-    fetch(`${baseUrl}?access_key=${apiKey}&query=${formattedCity}`)
+    fetch(`${baseUrl}?key=${apiKey}&q=${formattedCity}&lang=it`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
@@ -25,7 +25,7 @@ function InputComponent({ setWeatherData }) {
             setError(true);
             setErrorText("Inserisci una città valida");
           }
-        }else{
+        } else {
           setError(false);
         }
         const dataMeteo = json.current;
@@ -33,37 +33,39 @@ function InputComponent({ setWeatherData }) {
         const newWeatherData = {
           time: dataMeteo.observation_time,
           city: location.name,
-          temperature: dataMeteo.temperature,
-          temperatureFeelslike: dataMeteo.feelslike,
+          temperature: dataMeteo.temp_c,
+          temperatureFeelslike: dataMeteo.feelslike_c,
           country: location.country,
           humidity: dataMeteo.humidity,
-          precip: dataMeteo.precip,
-          uvIndex: dataMeteo.uv_index,
+          precip: dataMeteo.precip_mm,
+          uvIndex: dataMeteo.uv,
           visibility: dataMeteo.visibility,
           windDegree: dataMeteo.wind_degree,
           windDir: dataMeteo.wind_dir,
-          windSpeed: dataMeteo.wind_speed,
+          windSpeed: dataMeteo.wind_kph,
         };
-        if (dataMeteo.weather_descriptions[0] === "Sunny") {
+        if (dataMeteo.condition.text === "Soleggiato") {
           newWeatherData.weatherIcon = "src/assets/img/sun_weather_icon.png";
-          newWeatherData.weatherDescription = "Soleggiato";
-        } else if (dataMeteo.weather_descriptions[0] === "Overcast") {
+          newWeatherData.weatherDescription = dataMeteo.condition.text;
+        } else if (dataMeteo.condition.text === "Parzialmente nuvoloso") {
           newWeatherData.weatherIcon = "src/assets/img/sunny_weather_icon.png";
-          newWeatherData.weatherDescription = "Nuvoloso";
-        } else if (dataMeteo.weather_descriptions[0] === "Mist") {
+          newWeatherData.weatherDescription = dataMeteo.condition.text;
+        } else if (dataMeteo.condition.text === "Nuvoloso") {
+          newWeatherData.weatherIcon = "src/assets/img/sunny_weather_icon.png";
+          newWeatherData.weatherDescription = dataMeteo.condition.text;
+        } else if (dataMeteo.condition.text === "Nebbia") {
           newWeatherData.weatherIcon =
             "src/assets/img/foggy_cloud_weather_icon.png";
-          newWeatherData.weatherDescription = "Nebbia";
-        } else if (dataMeteo.weather_descriptions[0] === "Clear") {
+          newWeatherData.weatherDescription = dataMeteo.condition.text;
+        } else if (dataMeteo.condition.text === "Sereno") {
           newWeatherData.weatherIcon = "src/assets/img/moon_weather_icon.png";
           newWeatherData.weatherDescription = "Sereno";
-        } else if (dataMeteo.weather_descriptions[0] === "Partly cloudy") {
-          newWeatherData.weatherIcon =
-            "src/assets/img/moon_cloud_weather_icon.png";
-          newWeatherData.weatherDescription = "Parzialmente nuvoloso";
-        } else if (dataMeteo.weather_descriptions[0] === "Light Rain") {
+        } else if (dataMeteo.condition.text.includes("Pio")) {
           newWeatherData.weatherIcon = "src/assets/img/rain_weather_icon.png";
-          newWeatherData.weatherDescription = "Pioggia";
+          newWeatherData.weatherDescription = dataMeteo.condition.text;
+        }else{
+          newWeatherData.weatherIcon = dataMeteo.condition.icon;
+          newWeatherData.weatherDescription = dataMeteo.condition.text;
         }
         setWeatherData(newWeatherData);
       })
