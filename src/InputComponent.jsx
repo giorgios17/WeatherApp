@@ -20,7 +20,7 @@ function InputComponent({ setWeatherData }) {
       .then((json) => {
         console.log(json);
         if (json.error) {
-          if (json.error.code === 615) {
+          if (json.error.code === 1006) {
             console.log("615 entro");
             setError(true);
             setErrorText("Inserisci una città valida");
@@ -45,23 +45,23 @@ function InputComponent({ setWeatherData }) {
           windSpeed: dataMeteo.wind_kph,
         };
         if (dataMeteo.condition.text === "Soleggiato") {
-          newWeatherData.weatherIcon = "../public/assets/img/sun_weather_icon.png";
+          newWeatherData.weatherIcon = "https://i.postimg.cc/dQ2gr9hz/sun-weather-icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         } else if (dataMeteo.condition.text === "Parzialmente nuvoloso") {
-          newWeatherData.weatherIcon = "../public/assets/img/sunny_weather_icon.png";
+          newWeatherData.weatherIcon = "https://i.postimg.cc/Dy5DYyd6/sunny-weather-icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         } else if (dataMeteo.condition.text === "Nuvoloso") {
-          newWeatherData.weatherIcon = "../public/assets/img/sunny_weather_icon.png";
+          newWeatherData.weatherIcon = "https://i.postimg.cc/Dy5DYyd6/sunny-weather-icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         } else if (dataMeteo.condition.text === "Nebbia") {
           newWeatherData.weatherIcon =
-            "../public/assets/img/foggy_cloud_weather_icon.png";
+            "https://i.postimg.cc/TPKZbMb9/foggy-cloud-weather-icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         } else if (dataMeteo.condition.text === "Sereno") {
-          newWeatherData.weatherIcon = "../public/assets/img/moon_weather_icon.png";
+          newWeatherData.weatherIcon = "https://i.postimg.cc/RhL8mMrM/moon-weather-icon.png";
           newWeatherData.weatherDescription = "Sereno";
         } else if (dataMeteo.condition.text.includes("Pio")) {
-          newWeatherData.weatherIcon = "../public/assets/img/rain_weather_icon.png";
+          newWeatherData.weatherIcon = "https://i.postimg.cc/bNqWT2bd/rain-weather-icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         }else{
           newWeatherData.weatherIcon = dataMeteo.condition.icon;
@@ -77,7 +77,7 @@ function InputComponent({ setWeatherData }) {
       <input
         type="text"
         className="form-control"
-        placeholder="Città"
+        placeholder="Inserisci una città..."
         value={city}
         onChange={handleInputChange}
       />
@@ -92,7 +92,7 @@ function InputComponent({ setWeatherData }) {
       )}
       <button
         type="button"
-        className="btn btn-warning mt-2 fw-bolder"
+        className="btn btn-primary mt-2 fw-bolder"
         onClick={handleCitySubmit}
       >
         Invia

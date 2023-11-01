@@ -8,22 +8,22 @@ function DettagliComponent({ weatherData, setMostraDettagli }) {
       <div className="container-dettagli py-5">
         <div className="row justify-content-center py-3">
           <CardComponent
-            image={"/assets/img/humidity_icon.png"}
+            image={"https://i.postimg.cc/tg88tStH/humidity-icon.png"}
             descrizione={"Umidità:"}
             valore={`${weatherData.humidity}%`}
           />
           <CardComponent
-            image={"/assets/img/rain_weather_icon.png"}
+            image={"https://i.postimg.cc/bNqWT2bd/rain-weather-icon.png"}
             descrizione={"Precipitazioni:"}
             valore={`${weatherData.precip} mm`}
           />
           <CardComponent
-            image={"/assets/img/sun_weather_icon.png"}
+            image={"https://i.postimg.cc/dQ2gr9hz/sun-weather-icon.png"}
             descrizione={"Indice UV:"}
             valore={weatherData.uvIndex}
           />
           <CardComponent
-            image={"/assets/img/wind.png"}
+            image={"https://i.postimg.cc/fRrPD2P0/wind.png"}
             descrizione={"Vento:"}
             valore={`${weatherData.windDegree}°/${weatherData.windDir} - ${weatherData.windSpeed}km/h`}
           />

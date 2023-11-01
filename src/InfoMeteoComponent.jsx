@@ -4,7 +4,7 @@ import React from 'react'
 function InfoMeteoComponent({weatherData}) {
   return (
     <>
-    <div className="row justify-content-center mt-5" style={{zIndex: "99"}}>
+    <div className="row justify-content-center mt-2" style={{zIndex: "99"}}>
             <h1>{weatherData.time}</h1>
           </div>
           <div className="row align-items-center mt-4">

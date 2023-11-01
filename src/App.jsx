@@ -39,7 +39,7 @@ function App() {
         <div className="container">
           <InputComponent  setWeatherData={setWeatherData}/>
           <InfoMeteoComponent weatherData={weatherData}/>
-          <button type="button" className="btn btn-warning fw-bolder" onClick={()=>setMostraDettagli(true)}>
+          <button type="button" className="btn btn-primary fw-bolder" onClick={()=>setMostraDettagli(true)}>
             Mostra dettagli
           </button>
           {mostraDettagli && <DettagliComponent weatherData={weatherData} setMostraDettagli={setMostraDettagli} mostraDettagli={mostraDettagli}/>}
