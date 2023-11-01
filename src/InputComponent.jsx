@@ -45,23 +45,23 @@ function InputComponent({ setWeatherData }) {
           windSpeed: dataMeteo.wind_kph,
         };
         if (dataMeteo.condition.text === "Soleggiato") {
-          newWeatherData.weatherIcon = "src/assets/img/sun_weather_icon.png";
+          newWeatherData.weatherIcon = "../public/assets/img/sun_weather_icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         } else if (dataMeteo.condition.text === "Parzialmente nuvoloso") {
-          newWeatherData.weatherIcon = "src/assets/img/sunny_weather_icon.png";
+          newWeatherData.weatherIcon = "../public/assets/img/sunny_weather_icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         } else if (dataMeteo.condition.text === "Nuvoloso") {
-          newWeatherData.weatherIcon = "src/assets/img/sunny_weather_icon.png";
+          newWeatherData.weatherIcon = "../public/assets/img/sunny_weather_icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         } else if (dataMeteo.condition.text === "Nebbia") {
           newWeatherData.weatherIcon =
-            "src/assets/img/foggy_cloud_weather_icon.png";
+            "../public/assets/img/foggy_cloud_weather_icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         } else if (dataMeteo.condition.text === "Sereno") {
-          newWeatherData.weatherIcon = "src/assets/img/moon_weather_icon.png";
+          newWeatherData.weatherIcon = "../public/assets/img/moon_weather_icon.png";
           newWeatherData.weatherDescription = "Sereno";
         } else if (dataMeteo.condition.text.includes("Pio")) {
-          newWeatherData.weatherIcon = "src/assets/img/rain_weather_icon.png";
+          newWeatherData.weatherIcon = "../public/assets/img/rain_weather_icon.png";
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         }else{
           newWeatherData.weatherIcon = dataMeteo.condition.icon;

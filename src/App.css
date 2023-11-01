@@ -41,7 +41,7 @@
   color: #888;
 }
 .container{
-  background: url("src/assets/img/bg-sun.jpeg");
+  background: url("/assets/img/bg-sun.jpeg");
   background-size: cover;
   height: 100vh;
   width: 100vw;
@@ -49,7 +49,7 @@
   overflow: hidden;
 }
 .container-dettagli{
-  background: url("src/assets/img/bg-sun.jpeg");
+  background: url("/assets/img/bg-sun.jpeg");
   height: 100vh;
   width: 100vw;
   padding: 10px;
