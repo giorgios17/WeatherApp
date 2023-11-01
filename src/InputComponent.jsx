@@ -155,7 +155,7 @@ function InputComponent({ setWeatherData }) {
         Invia
       </button>
       {isLoading && (
-        <div>
+        <div className="mt-5">
           <FontAwesomeIcon icon={faSpinner} spin size="2xl" />
         </div>
       )}
