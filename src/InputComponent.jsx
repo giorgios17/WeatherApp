@@ -129,7 +129,7 @@ function InputComponent({ setWeatherData }) {
       <div className="d-flex">
         <input
           type="text"
-          className="form-control mx-2"
+          className="form-control mx-2 fw-bold"
           style={{"borderRadius":"30px"}}
           placeholder="Inserisci una città..."
           value={city}
@@ -137,7 +137,7 @@ function InputComponent({ setWeatherData }) {
         />
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn text-light glass"
           onClick={() => getLocation()}
         >
           <FontAwesomeIcon icon={faLocationDot} />
@@ -154,7 +154,7 @@ function InputComponent({ setWeatherData }) {
       )}
       <button
         type="button"
-        className="btn btn-primary mt-2 fw-bolder"
+        className="btn text-light glass mt-2 fw-bolder"
         onClick={handleCitySubmit}
       >
         Invia

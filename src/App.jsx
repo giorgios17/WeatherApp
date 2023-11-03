@@ -37,7 +37,7 @@ function App() {
           <InfoMeteoComponent weatherData={weatherData} />
           <button
             type="button"
-            className="btn btn-primary fw-bolder"
+            className="btn text-light glass fw-bolder"
             onClick={() => setPostitionContainerDettagli("0")}
           >
             Mostra dettagli
