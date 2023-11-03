@@ -45,7 +45,6 @@ function App() {
           <div className="container-dettagli py-5" style={{left:postitionContainerDettagli}}>
               <DettagliComponent
                 weatherData={weatherData}
-                /* setMostraDettagli={setMostraDettagli} */
                 setPostitionContainerDettagli={setPostitionContainerDettagli}
               />
           </div>

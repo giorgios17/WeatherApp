@@ -55,6 +55,10 @@ function InputComponent({ setWeatherData }) {
   const handleCitySubmit = () => {
     setIsLoading(true);
     const formattedCity = city.toLowerCase().replace(/\s+/g, "-");
+    if(formattedCity == ""){
+      setError(true);
+      setErrorText("Inserisci una città valida");
+    }
     fetch(`${baseUrl}?key=${apiKey}&q=${formattedCity}&lang=it`)
       .then((response) => response.json())
       .then((json) => {
