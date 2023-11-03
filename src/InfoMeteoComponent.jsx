@@ -9,7 +9,7 @@ function InfoMeteoComponent({weatherData}) {
           </div>
           <div className="row align-items-center mt-4">
             <div className="col-12">
-              <h2>
+              <h2 className='text-light glass py-2'>
                 {weatherData.city}, {weatherData.country}
               </h2>
             </div>
@@ -21,7 +21,7 @@ function InfoMeteoComponent({weatherData}) {
             </p>
           </div>
           <p>
-            <span className="temperaturaAttuale">
+            <span className="temperaturaAttuale text-warning">
               {weatherData.temperature}°
             </span>
             / temperatura percepita: {weatherData.temperatureFeelslike}°

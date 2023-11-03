@@ -7,9 +7,7 @@ import InfoMeteoComponent from "./InfoMeteoComponent";
 import DettagliComponent from "./DettagliComponent";
 import config from "./config.json";
 
-
 function App() {
-  
   const initialWeatherData = {
     time: "",
     city: "",
@@ -22,27 +20,35 @@ function App() {
     humidity: "",
     precip: "",
     uvIndex: "",
-    visibility:"",
-    windDegree:"",
-    windDir:"",
-    windSpeed:"",
-
+    visibility: "",
+    windDegree: "",
+    windDir: "",
+    windSpeed: "",
   };
-  const [mostraDettagli, setMostraDettagli] = useState(false);
-
+ /*  const [mostraDettagli, setMostraDettagli] = useState(false); */
+  const [postitionContainerDettagli, setPostitionContainerDettagli] = useState("100%");
   const [weatherData, setWeatherData] = useState(initialWeatherData);
-
 
   if (weatherData.city != "") {
     return (
       <>
         <div className="container">
-          <InputComponent  setWeatherData={setWeatherData}/>
-          <InfoMeteoComponent weatherData={weatherData}/>
-          <button type="button" className="btn btn-primary fw-bolder" onClick={()=>setMostraDettagli(true)}>
+          <InputComponent setWeatherData={setWeatherData} />
+          <InfoMeteoComponent weatherData={weatherData} />
+          <button
+            type="button"
+            className="btn btn-primary fw-bolder"
+            onClick={() => setPostitionContainerDettagli("0")}
+          >
             Mostra dettagli
           </button>
-          {mostraDettagli && <DettagliComponent weatherData={weatherData} setMostraDettagli={setMostraDettagli} mostraDettagli={mostraDettagli}/>}
+          <div className="container-dettagli py-5" style={{left:postitionContainerDettagli}}>
+              <DettagliComponent
+                weatherData={weatherData}
+                /* setMostraDettagli={setMostraDettagli} */
+                setPostitionContainerDettagli={setPostitionContainerDettagli}
+              />
+          </div>
         </div>
       </>
     );

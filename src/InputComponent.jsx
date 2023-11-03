@@ -125,7 +125,8 @@ function InputComponent({ setWeatherData }) {
       <div className="d-flex">
         <input
           type="text"
-          className="form-control"
+          className="form-control mx-2"
+          style={{"borderRadius":"30px"}}
           placeholder="Inserisci una città..."
           value={city}
           onChange={handleInputChange}

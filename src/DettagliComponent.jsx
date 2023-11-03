@@ -2,10 +2,10 @@
 import React from "react";
 import CardComponent from "./CardComponent";
 
-function DettagliComponent({ weatherData, setMostraDettagli }) {
+function DettagliComponent({ weatherData,setPostitionContainerDettagli }) {
   return (
     <>
-      <div className="container-dettagli py-5">
+      
         <div className="row justify-content-center py-3">
           <CardComponent
             image={"https://i.postimg.cc/tg88tStH/humidity-icon.png"}
@@ -31,11 +31,10 @@ function DettagliComponent({ weatherData, setMostraDettagli }) {
         <button
           type="button"
           className="btn btn-danger fw-bolder buttonCloseDettagli"
-          onClick={() => setMostraDettagli(false)}
+          onClick={() => setPostitionContainerDettagli("100%")}
         >
           X
         </button>
-      </div>
     </>
   );
 }
