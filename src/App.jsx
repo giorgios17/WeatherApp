@@ -6,6 +6,7 @@ import InputComponent from "./InputComponent";
 import InfoMeteoComponent from "./InfoMeteoComponent";
 import DettagliComponent from "./DettagliComponent";
 import config from "./config.json";
+import StartComponent from "./StartComponent";
 
 function App() {
   const initialWeatherData = {
@@ -28,8 +29,14 @@ function App() {
  /*  const [mostraDettagli, setMostraDettagli] = useState(false); */
   const [postitionContainerDettagli, setPostitionContainerDettagli] = useState("100%");
   const [weatherData, setWeatherData] = useState(initialWeatherData);
-
-  if (weatherData.city != "") {
+  const [start, setStart] = useState(true);
+  if (start) {
+    return (
+      <>
+      <StartComponent setStart={setStart}/>
+      </>
+    )
+  }else if (weatherData.city != "") {
     return (
       <>
         <div className="container">
