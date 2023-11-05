@@ -26,7 +26,7 @@ function App() {
     windDir: "",
     windSpeed: "",
   };
- /*  const [mostraDettagli, setMostraDettagli] = useState(false); */
+  
   const [postitionContainerDettagli, setPostitionContainerDettagli] = useState("100%");
   const [weatherData, setWeatherData] = useState(initialWeatherData);
   const [start, setStart] = useState(true);
@@ -39,7 +39,7 @@ function App() {
   }else if (weatherData.city != "") {
     return (
       <>
-        <div className="container">
+        <div className="container-app">
           <InputComponent setWeatherData={setWeatherData} />
           <InfoMeteoComponent weatherData={weatherData} />
           <button
@@ -61,7 +61,7 @@ function App() {
   } else {
     return (
       <>
-        <div className="container">
+        <div className="container-app">
           <InputComponent setWeatherData={setWeatherData} />
         </div>
       </>
