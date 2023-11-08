@@ -37,6 +37,7 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background: linear-gradient(to bottom, #0090cb, #a5d4dd);
 }
 
 h1 {

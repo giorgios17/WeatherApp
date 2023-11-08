@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import config from "./config.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faSpinner,faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-function InputComponent({ setWeatherData }) {
+function InputComponent({ setWeatherData,setForecastData, setShowComponent }) {
   const [city, setCity] = useState("");
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
@@ -13,7 +13,7 @@ function InputComponent({ setWeatherData }) {
     setCity(e.target.value);
   };
 
-  const baseUrl = "https://api.weatherapi.com/v1/current.json";
+  const baseUrl = "https://api.weatherapi.com/v1/forecast.json";
   const apiKey = config.apiKey;
 
   function getLocation() {
@@ -59,7 +59,7 @@ function InputComponent({ setWeatherData }) {
       setError(true);
       setErrorText("Inserisci una città valida");
     }
-    fetch(`${baseUrl}?key=${apiKey}&q=${formattedCity}&lang=it`)
+    fetch(`${baseUrl}?key=${apiKey}&q=${formattedCity}&lang=it&days=3`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
@@ -88,6 +88,8 @@ function InputComponent({ setWeatherData }) {
           windDir: dataMeteo.wind_dir,
           windSpeed: dataMeteo.wind_kph,
         };
+        const forecastData = json.forecast.forecastday;
+
         if (dataMeteo.condition.text === "Soleggiato") {
           newWeatherData.weatherIcon =
             "https://i.postimg.cc/dQ2gr9hz/sun-weather-icon.png";
@@ -117,6 +119,12 @@ function InputComponent({ setWeatherData }) {
           newWeatherData.weatherDescription = dataMeteo.condition.text;
         }
         setWeatherData(newWeatherData);
+        setForecastData(forecastData);
+        console.log(forecastData);
+        setTimeout(() => {
+          setShowComponent(true); // Mostra il componente gradualmente
+        }, 500);
+        setCity("");
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -129,7 +137,7 @@ function InputComponent({ setWeatherData }) {
       <div className="d-flex">
         <input
           type="text"
-          className="form-control mx-2 fw-bold"
+          className="form-control fw-bold"
           style={{"borderRadius":"30px"}}
           placeholder="Inserisci una città..."
           value={city}
@@ -137,30 +145,31 @@ function InputComponent({ setWeatherData }) {
         />
         <button
           type="button"
-          className="btn text-light glass"
+          className="btn text-light glass mx-2"
           onClick={() => getLocation()}
         >
           <FontAwesomeIcon icon={faLocationDot} />
         </button>
+        <button
+        type="button"
+        className="btn text-light glass fw-bolder"
+        onClick={handleCitySubmit}
+      >
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
+      </button>
       </div>
       {error && (
         <div
           className="alert alert-danger"
           role="alert"
-          style={{ padding: "0" }}
+          style={{ padding: "0",  margin:"0" }}
         >
           {errorText}
         </div>
       )}
-      <button
-        type="button"
-        className="btn text-light glass mt-2 fw-bolder"
-        onClick={handleCitySubmit}
-      >
-        Invia
-      </button>
+     
       {isLoading && (
-        <div className="mt-5">
+        <div className="mt-5 loading-icon">
           <FontAwesomeIcon icon={faSpinner} spin size="2xl" />
         </div>
       )}

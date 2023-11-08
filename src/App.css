@@ -1,6 +1,4 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
   text-align: center;
   font-family: "Roboto", sans-serif;
 }
@@ -19,6 +17,14 @@
   width: 100vw;
   padding: 10px;
   overflow: hidden;
+  max-width: 1200px;
+}
+.opacity-transition{
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.show{
+  opacity: 1;
 }
 .container-dettagli {
   background: linear-gradient(to bottom, #0090cb, #a5d4dd);
@@ -29,6 +35,8 @@
   position: fixed;
   top: 0;
   transition: left 1s;
+  z-index: 9;
+  max-width: 1200px;
 }
 .temperaturaAttuale {
   font-weight: bolder;
@@ -38,9 +46,10 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
 }
 .weatherIcon {
-  width: 215px;
+  width: 175px;
 }
 .card {
   padding: 1em !important;
@@ -53,7 +62,7 @@
 .glass {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -70,6 +79,19 @@
   }
 }
 
-.logo-and-button {
+.transitionFadeIn {
   animation: fadeIn 1s ease-in-out;
+}
+.loading-icon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
+@media (min-width:768px){
+  #root {
+    margin: auto;
+  }
 }

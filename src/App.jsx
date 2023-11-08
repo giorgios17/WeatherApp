@@ -6,7 +6,6 @@ import InputComponent from "./InputComponent";
 import InfoMeteoComponent from "./InfoMeteoComponent";
 import DettagliComponent from "./DettagliComponent";
 import config from "./config.json";
-import StartComponent from "./StartComponent";
 
 function App() {
   const initialWeatherData = {
@@ -26,34 +25,57 @@ function App() {
     windDir: "",
     windSpeed: "",
   };
-  
-  const [postitionContainerDettagli, setPostitionContainerDettagli] = useState("100%");
+
+  const [postitionContainerDettagli, setPostitionContainerDettagli] =
+    useState("100%");
   const [weatherData, setWeatherData] = useState(initialWeatherData);
-  const [start, setStart] = useState(true);
-  if (start) {
-    return (
-      <>
-      <StartComponent setStart={setStart}/>
-      </>
-    )
-  }else if (weatherData.city != "") {
+  const [forecastData, setForecastData] = useState();
+  const [showComponent, setShowComponent] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
+  const breakpoint = 768;
+  useEffect(() => {
+   const handleResizeWindow = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
+
+  if (weatherData.city != "") {
     return (
       <>
         <div className="container-app">
-          <InputComponent setWeatherData={setWeatherData} />
-          <InfoMeteoComponent weatherData={weatherData} />
-          <button
-            type="button"
-            className="btn text-light glass fw-bolder"
-            onClick={() => setPostitionContainerDettagli("0")}
+          <img className="logo mb-2" src="./assets/img/logo1.png" alt="logo" />
+          <InputComponent
+            setWeatherData={setWeatherData}
+            setForecastData={setForecastData}
+            setShowComponent={setShowComponent}
+          />
+          <div className={`opacity-transition ${showComponent ? "show" : ""}`}>
+            <InfoMeteoComponent
+              weatherData={weatherData}
+              forecastData={forecastData}
+            />
+            {
+              width < breakpoint && <button
+              type="button"
+              className="btn text-light glass fw-bolder"
+              onClick={() => setPostitionContainerDettagli("0")}
+            >
+              Mostra dettagli
+            </button>
+            }
+            
+          </div>
+
+          <div
+            className="container-dettagli py-5"
+            style={{ left: postitionContainerDettagli }}
           >
-            Mostra dettagli
-          </button>
-          <div className="container-dettagli py-5" style={{left:postitionContainerDettagli}}>
-              <DettagliComponent
-                weatherData={weatherData}
-                setPostitionContainerDettagli={setPostitionContainerDettagli}
-              />
+            <DettagliComponent
+              weatherData={weatherData}
+              setPostitionContainerDettagli={setPostitionContainerDettagli}
+            />
           </div>
         </div>
       </>
@@ -62,7 +84,14 @@ function App() {
     return (
       <>
         <div className="container-app">
-          <InputComponent setWeatherData={setWeatherData} />
+          <div className="transitionFadeIn">
+            <img className="logo mb-2" src="./assets/img/logo1.png" alt="logo" />
+            <InputComponent
+              setWeatherData={setWeatherData}
+              setForecastData={setForecastData}
+              setShowComponent={setShowComponent}
+            />
+          </div>
         </div>
       </>
     );
