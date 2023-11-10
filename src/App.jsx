@@ -46,7 +46,7 @@ function App() {
     return (
       <>
         <div className="container-app">
-          <img className="logo mb-2" src="./assets/img/logo1.png" alt="logo" />
+          <img className="logo mb-2" src="./assets/img/logo.png" alt="logo" />
           <InputComponent
             setWeatherData={setWeatherData}
             setForecastData={setForecastData}
@@ -90,7 +90,7 @@ function App() {
           <div className="transitionFadeIn">
             <img
               className="logo mb-2"
-              src="./assets/img/logo1.png"
+              src="./assets/img/logo.png"
               alt="logo"
             />
             <InputComponent
