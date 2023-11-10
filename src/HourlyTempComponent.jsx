@@ -23,18 +23,34 @@ function SwiperComponent({ forecastData }) {
   useEffect(() => {
     register();
     const params = {
-      slidesPerView: 5,
       breakpoints: {
+        100:{
+          slidesPerView: 5,
+        },
         576: {
           slidesPerView: 7,
         },
         768: {
           slidesPerView: 10,
         },
+        1024: {
+          slidesPerView: 12,
+        },
         1200: {
           slidesPerView: 15,
         },
       },
+      navigation:"true",
+      injectStyles: [
+        `
+          .swiper-button-next {
+            right:0;
+          }
+          .swiper-button-prev{
+            left:0;
+          }
+          `,
+      ],
     };
     Object.assign(swiperRef.current, params);
     swiperRef.current.initialize();
@@ -69,6 +85,8 @@ function SwiperComponent({ forecastData }) {
             </swiper-slide>
           ))}
       </swiper-container>
+      <div className="swiper-button-prev"></div>
+      <div className="swiper-button-next"></div>
     </>
   );
 }
