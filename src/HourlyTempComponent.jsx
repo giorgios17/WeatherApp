@@ -43,12 +43,13 @@ function SwiperComponent({ forecastData }) {
   return (
     <>
       <swiper-container init="false" ref={swiperRef}>
-        {forecastData[0].hour
+        {[...forecastData[0].hour, ...forecastData[1].hour]
           .filter((element) => {
             const elementTime = new Date(element.time);
             elementTime.setMinutes(0);
             return elementTime >= now;
           })
+          .slice(0, 24)
           .map((element, index) => (
             <swiper-slide key={index}>
               <div className="d-flex flex-column justify-content-center align-items-center">

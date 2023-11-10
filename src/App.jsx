@@ -4,7 +4,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import InputComponent from "./InputComponent";
 import InfoMeteoComponent from "./InfoMeteoComponent";
-import DettagliComponent from "./DettagliComponent";
+import DettagliMobileComponent from "./DettagliMobileComponent";
+import DettagliDesktopComponent from "./DettagliDesktopComponent";
 import config from "./config.json";
 
 function App() {
@@ -32,9 +33,9 @@ function App() {
   const [forecastData, setForecastData] = useState();
   const [showComponent, setShowComponent] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
-  const breakpoint = 768;
+  const breakpoint = 767;
   useEffect(() => {
-   const handleResizeWindow = () => setWidth(window.innerWidth);
+    const handleResizeWindow = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResizeWindow);
     return () => {
       window.removeEventListener("resize", handleResizeWindow);
@@ -56,27 +57,29 @@ function App() {
               weatherData={weatherData}
               forecastData={forecastData}
             />
-            {
-              width < breakpoint && <button
-              type="button"
-              className="btn text-light glass fw-bolder"
-              onClick={() => setPostitionContainerDettagli("0")}
-            >
-              Mostra dettagli
-            </button>
-            }
-            
-          </div>
+            {width < breakpoint && (
+              <button
+                type="button"
+                className="btn text-light glass fw-bolder"
+                onClick={() => setPostitionContainerDettagli("0")}
+              >
+                Mostra dettagli
+              </button>
+            )}
+            {width > breakpoint && (
+             <DettagliDesktopComponent weatherData={weatherData}/>
+            )}
 
-          <div
-            className="container-dettagli py-5"
-            style={{ left: postitionContainerDettagli }}
-          >
-            <DettagliComponent
-              weatherData={weatherData}
-              setPostitionContainerDettagli={setPostitionContainerDettagli}
-            />
           </div>
+        </div>
+        <div
+          className="container-dettagli py-5"
+          style={{ left: postitionContainerDettagli }}
+        >
+          <DettagliMobileComponent
+            weatherData={weatherData}
+            setPostitionContainerDettagli={setPostitionContainerDettagli}
+          />
         </div>
       </>
     );
@@ -85,7 +88,11 @@ function App() {
       <>
         <div className="container-app">
           <div className="transitionFadeIn">
-            <img className="logo mb-2" src="./assets/img/logo1.png" alt="logo" />
+            <img
+              className="logo mb-2"
+              src="./assets/img/logo1.png"
+              alt="logo"
+            />
             <InputComponent
               setWeatherData={setWeatherData}
               setForecastData={setForecastData}

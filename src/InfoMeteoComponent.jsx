@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import SwiperComponent from "./SwiperComponent";
+import HourlyTempComponent from "./HourlyTempComponent";
 
 function InfoMeteoComponent({ weatherData, forecastData }) {
   return (
@@ -14,29 +14,32 @@ function InfoMeteoComponent({ weatherData, forecastData }) {
             {weatherData.city}, {weatherData.country}
           </h4>
         </div>
-        <div className="d-flex align-items-center justify-content-around">
-          <p className="text-light glass p-2">
+        <div className="d-flex align-items-center justify-content-center py-2">
+          <div className="d-flex flex-column text-light glass p-2">
             <span className="temperaturaAttuale text-warning">
               {weatherData.temperature}°
             </span>
-            <br />/ percepita{" "}
-            <span className="fw-bold">{weatherData.temperatureFeelslike}°</span>
-            <br />
+            <div>
+              / percepita{" "}
+              <span className="fw-bold">
+                {weatherData.temperatureFeelslike}°
+              </span>
+            </div>
             <span className="small">
-              Max:<span className="fw-bold">{forecastData[0].day.maxtemp_c}°</span>
+              Max:
+              <span className="fw-bold">{forecastData[0].day.maxtemp_c}°</span>
               /Min:
               <span className="fw-bold">{forecastData[0].day.mintemp_c}°</span>
             </span>
-            <br />
             <span className="fw-bold" style={{ fontSize: "12px" }}>
               {weatherData.weatherDescription}
             </span>
-          </p>
+          </div>
           <img className="weatherIcon" src={weatherData.weatherIcon} alt="" />
         </div>
       </div>
       <div className="mb-3 glass">
-        <SwiperComponent forecastData={forecastData} />
+        <HourlyTempComponent forecastData={forecastData} />
       </div>
     </>
   );
