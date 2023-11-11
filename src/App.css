@@ -16,7 +16,6 @@
   height: 100vh;
   width: 100vw;
   padding: 10px;
-  overflow: hidden;
   max-width: 1200px;
 }
 .opacity-transition{
@@ -31,10 +30,9 @@
   height: 100vh;
   width: 100vw;
   padding: 10px;
-  overflow: hidden;
   position: fixed;
   top: 0;
-  transition: left 1s;
+  transition: left 0.5s;
   z-index: 9;
   max-width: 1200px;
 }
@@ -94,10 +92,8 @@
   #root {
     margin: auto;
   }
+  .containerMeteoGiorniSuccessivi{
+  width: 60%;
+  margin: auto;
+  }
 }
-.swiper-button-next {
- right: 0;
-}
-.swiper-button-prev {
-  left: 0;
- }

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import HourlyTempComponent from "./HourlyTempComponent";
+import GiorniSuccessiviComponent from "./GiorniSuccessiviComponent";
 
 function InfoMeteoComponent({ weatherData, forecastData }) {
   return (
@@ -15,7 +16,7 @@ function InfoMeteoComponent({ weatherData, forecastData }) {
           </h4>
         </div>
         <div className="d-flex align-items-center justify-content-center py-2">
-          <div className="d-flex flex-column text-light glass p-2">
+          <div className="d-flex align-items-center flex-column text-light glass p-2">
             <span className="temperaturaAttuale text-warning">
               {weatherData.temperature}°
             </span>
@@ -26,9 +27,9 @@ function InfoMeteoComponent({ weatherData, forecastData }) {
               </span>
             </div>
             <span className="small">
-              Max:
+              Max.
               <span className="fw-bold">{forecastData[0].day.maxtemp_c}°</span>
-              /Min:
+              /Min.
               <span className="fw-bold">{forecastData[0].day.mintemp_c}°</span>
             </span>
             <span className="fw-bold" style={{ fontSize: "12px" }}>
@@ -41,6 +42,7 @@ function InfoMeteoComponent({ weatherData, forecastData }) {
       <div className="mb-3 glass">
         <HourlyTempComponent forecastData={forecastData} />
       </div>
+     <GiorniSuccessiviComponent forecastData={forecastData}/>
     </>
   );
 }

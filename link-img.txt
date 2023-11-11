@@ -8,3 +8,7 @@ https://i.postimg.cc/dV1XMP5Y/snow-weather-icon.png
 https://i.postimg.cc/Dy5DYyd6/sunny-weather-icon.png
 https://i.postimg.cc/dQ2gr9hz/sun-weather-icon.png
 https://i.postimg.cc/fRrPD2P0/wind.png
+https://i.postimg.cc/fy6zy2y3/sunrise.png
+https://i.postimg.cc/mDg251Kr/sunset.png
+https://i.postimg.cc/fbRgJYFZ/moonrise.png
+https://i.postimg.cc/mgRnWvyP/moonset.png

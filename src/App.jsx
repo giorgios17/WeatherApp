@@ -33,7 +33,7 @@ function App() {
   const [forecastData, setForecastData] = useState();
   const [showComponent, setShowComponent] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
-  const breakpoint = 767;
+  const breakpoint = 770;
   useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResizeWindow);
@@ -66,21 +66,25 @@ function App() {
                 Mostra dettagli
               </button>
             )}
-            {width > breakpoint && (
-             <DettagliDesktopComponent weatherData={weatherData}/>
+            {width >= breakpoint && (
+              <DettagliDesktopComponent
+                weatherData={weatherData}
+                forecastData={forecastData}
+              />
             )}
-
           </div>
         </div>
-        <div
-          className="container-dettagli py-5"
-          style={{ left: postitionContainerDettagli }}
-        >
-          <DettagliMobileComponent
-            weatherData={weatherData}
-            setPostitionContainerDettagli={setPostitionContainerDettagli}
-          />
-        </div>
+        {width < breakpoint && (
+          <div
+            className="container-dettagli py-5"
+            style={{ left: postitionContainerDettagli }}
+          >
+            <DettagliMobileComponent
+              weatherData={weatherData}
+              setPostitionContainerDettagli={setPostitionContainerDettagli}
+            />
+          </div>
+        )}
       </>
     );
   } else {
@@ -88,11 +92,7 @@ function App() {
       <>
         <div className="container-app">
           <div className="transitionFadeIn">
-            <img
-              className="logo mb-2"
-              src="./assets/img/logo.png"
-              alt="logo"
-            />
+            <img className="logo mb-2" src="./assets/img/logo.png" alt="logo" />
             <InputComponent
               setWeatherData={setWeatherData}
               setForecastData={setForecastData}

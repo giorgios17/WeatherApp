@@ -35,7 +35,7 @@ function InputComponent({ setWeatherData,setForecastData, setShowComponent }) {
     fetch(geocodeUrl)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("risposta chiamata geocode",data);
         if (data.address.town) {
           // La città si trova generalmente nell'indirizzo formattato
           const town = data.address.town;
@@ -62,10 +62,9 @@ function InputComponent({ setWeatherData,setForecastData, setShowComponent }) {
     fetch(`${baseUrl}?key=${apiKey}&q=${formattedCity}&lang=it&days=3`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
+        console.log("risposta API",json);
         if (json.error) {
           if (json.error.code === 1006) {
-            console.log("615 entro");
             setError(true);
             setErrorText("Inserisci una città valida");
           }
@@ -120,7 +119,7 @@ function InputComponent({ setWeatherData,setForecastData, setShowComponent }) {
         }
         setWeatherData(newWeatherData);
         setForecastData(forecastData);
-        console.log(forecastData);
+        console.log("forecastdata",forecastData);
         setTimeout(() => {
           setShowComponent(true); // Mostra il componente gradualmente
         }, 500);
